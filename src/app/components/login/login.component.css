@@ -1,11 +1,19 @@
 .margin-card {
-  margin-top: 30%;
+  margin-top: 10%;
 }
 
 div.card {
-  background-color: #538E98;
+  /* background-color: #313131; */
 }
 
 #profile-img{
-  margin-left: 15%;
+  margin-bottom: 5%;
+}
+
+input{
+	margin-top: 5%;
+}
+
+.alerts {
+	margin-top: 3%;
 }

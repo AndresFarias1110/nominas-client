@@ -1,37 +1,83 @@
 <app-nav-bar></app-nav-bar>
 
 <div class="col-12 header">
-  <h1>Nominas</h1>
+	<h1>Nominas</h1>
 </div>
+<div class="row">
+	<div class="col-lg-offset-8 col-lg-4">
+		<div class="input-group">
+			<input type="text" [(ngModel)]="filterTerm" class="form-control" placeholder="Buscar por mes o por año...">
+			<span class="input-group-btn">
+				<button class="btn btn-default" type="button">Go!</button>
+			</span>
+		</div>
+		<!-- /input-group -->
+	</div>
+</div>
+<div class="panel panel-body">
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>PDF</th>
-      <th>XML</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of dataFiles">
-      <th scope="row">1</th>
-      <td>
-        <div class="col-md-12">
-          <span class="col-md-6">{{ item.file_pdf }}</span>
-          <button type="button" class="btn btn-danger btn-sm" aria-label="Left Align">
-            <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
-          </button>
-        </div>
-      </td>
-      <td>
-        <div class="col-md-12">
-          <span class="col-md-6">{{ item.file_xml }}</span>
-          <button type="button" class="btn btn-danger btn-sm" aria-label="Left Align">
-            <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
-          </button>
-        </div>
-      </td>
-    </tr>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>PDF</th>
+				<th>XML</th>
+				<th>FECHA</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let item of dataFiles | searchFile:filterTerm">
+				<th scope="row">1</th>
+				<td>
+					<div class="col-md-12">
+						<span class="col-md-6">{{ item.pdf }}</span>
+						<a href="{{ url_documents + item.carpeta + '/' + item.pdf }}" download>
+						  	<button type="button" class="btn btn-danger btn-sm" aria-label="Left Align">
+				            	<span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+				          	</button>
+						</a>
+						<a href="{{ url_documents + item.carpeta + '/' + item.pdf }}" target="_blank">
+							<button type="button" class="btn btn-info btn-sm" aria-label="Left Align">
+					            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+					        </button>
+				  		</a>
+					</div>
+				</td>
+				<td>
+					<div class="col-md-12">
+						<span class="col-md-6">{{ item.xml }}</span>
+						<a href="{{ url_documents + item.carpeta + '/' + item.xml }}" download>
+						  	<button type="button" class="btn btn-danger btn-sm" aria-label="Left Align">
+				            	<span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+				          	</button>
+			  			</a>
+					</div>
+				</td>
+				<td>
+					<span> {{ item.fecha | dateFile }} </span>
+				</td>
+			</tr>
 
-  </tbody>
-</table>
+		</tbody>
+	</table>
+
+	<nav aria-label="Page navigation" class="col-md-offset-4 col-6">
+		<ul class="pagination">
+			<li>
+				<a href="#" aria-label="Previous">
+	        <span aria-hidden="true">&laquo;</span>
+	      </a>
+			</li>
+			<li><a href="#">1</a></li>
+			<li><a href="#">2</a></li>
+			<li><a href="#">3</a></li>
+			<li><a href="#">4</a></li>
+			<li><a href="#">5</a></li>
+			<li>
+				<a href="#" aria-label="Next">
+	        <span aria-hidden="true">&raquo;</span>
+	      </a>
+			</li>
+		</ul>
+	</nav>
+</div>

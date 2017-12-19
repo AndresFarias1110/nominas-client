@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Files }  from '../../interfaces/files';
 import { User }  from '../../interfaces/user';
 
+import { Router } from '@angular/router';
+import { UsersService }  from '../../services/users.service';
+import { AppItems }  from '../../utils/items';
+
+import { AppSettings } from '../../config/app_settings';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -10,34 +16,21 @@ import { User }  from '../../interfaces/user';
 export class HomeComponent implements OnInit {
 
   private user:User;
-  private dataFiles:Array<Files> = [
-    {
-      "url": "",
-      "file_pdf": "11111111_1.pdf",
-      "file_xml": "11111111_1.xml",
-      "date": "2017-12-29T00:00:00.000Z"
-    },
-    {
-      "url": "",
-      "file_pdf": "11111111_1.pdf",
-      "file_xml": "11111111_1.xml",
-      "date": "2017-12-29T00:00:00.000Z"
-    },
-    {
-      "url": "",
-      "file_pdf": "11111111_1.pdf",
-      "file_xml": "11111111_1.xml",
-      "date": "2017-12-29T00:00:00.000Z"
-    },
-    {
-      "url": "",
-      "file_pdf": "11111111_1.pdf",
-      "file_xml": "11111111_1.xml",
-      "date": "2017-12-29T00:00:00.000Z"
-    }
-  ];
 
-  constructor() { }
+  private dataFiles:Array<Files> = [];
+  private url_documents:string;
+  private filterTerm:string;
+
+  constructor(private usersService:UsersService) {
+
+	  this.url_documents = AppSettings.API + '/docs/';
+
+	  this.user = JSON.parse(localStorage.getItem(AppItems.ITEM_USER));
+	  this.usersService.getFiles(this.user.id).subscribe((rs:any) => {
+		  console.log(rs)
+		  this.dataFiles = rs;
+	  });
+  }
 
   ngOnInit() {
   }

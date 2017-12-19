@@ -1,26 +1,39 @@
-<div class="col-md-offset-4 col-md-4">
-  <div class="card card-container margin-card">
-      <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-      <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png">
-      <p id="profile-name" class="profile-name-card"></p>
+<div class="col-md-offset-4 col-md-4" style="background-color: #777; margin-top: 10%; color: white; padding: 2%;">
+	<div class="card card-container margin-card center-block">
+		<!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+		<img id="profile-img" class="col-md-offset-3 col-md-6  img-circle " src="//ssl.gstatic.com/accounts/ui/avatar_2x.png">
 
-      <form class="form-signin">
-          <span id="reauth-email" class="reauth-email"></span>
+		<p id="profile-name" class="profile-name-card"></p>
 
-          <input type="email" name="inputEmail" [(ngModel)]="inputEmail" class="form-control" placeholder="Correo" required autofocus="">
-          <input type="password" name="inputPassword" [(ngModel)]="inputPassword"  class="form-control" placeholder="Clave" required>
+		<form class="form-signin" #f="ngForm" (ngSubmit)="login(f)">
 
-          <div id="remember" class="checkbox">
-              <label>
-                  <input type="checkbox" value="remember-me"> Recordar
-              </label>
-          </div>
-          <button class="btn btn-lg btn-primary btn-block btn-signin" (click)="login()">Entrar</button>
-      </form><!-- /form -->
+			<span id="reauth-email" class="reauth-email"></span>
 
-      <a href="#" class="forgot-password">
+			<input type="email" name="inputEmail" id="inputEmail" ngModel #inputEmail="ngModel" class="form-control " placeholder="Ej. afarias@mctree.com" appMail autofocus="">
+
+			<div class="col-4 alerts">
+				<span class="text-danger" role="alert" *ngIf="inputEmail.invalid && (inputEmail.dirty || inputEmail.touched)">Correo invalido</span>
+			</div>
+
+			<input type="password" name="inputPassword" id="inputPassword" ngModel #inputPassword="ngModel" class="form-control" placeholder="Clave Minimo 8 caracteres" appPassword>
+
+			<div class="col-4 alerts">
+				<span class="text-danger" role="alert" *ngIf="inputPassword.invalid && (inputPassword.dirty || inputPassword.touched)">Contraseña invalida</span>
+			</div>
+
+			<div class="alert alert-danger alert-dismissible" role="alert" *ngIf="showAlertDanger">
+			  <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+			  <strong>Error!</strong> {{ msjError }}
+			</div>
+
+			<button class="btn btn-lg btn-primary btn-block btn-signin" *ngIf="inputPassword.errors || inputEmail.errors" disabled>Entrar</button>
+			<button class="btn btn-lg btn-primary btn-block btn-signin" *ngIf="!inputPassword.errors && !inputEmail.errors">Entrar</button>
+		</form>
+		<!-- /form -->
+
+		<a href="#" class="forgot-password">
           ¿Olvidaste la contraseña?
       </a>
 
-  </div>
+	</div>
 </div>

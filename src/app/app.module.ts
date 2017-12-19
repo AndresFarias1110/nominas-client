@@ -14,6 +14,10 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 //servirces
 import { UsersService } from './services/users.service';
+import { MailDirective } from './directives/mail.directive';
+import { PasswordDirective } from './directives/password.directive';
+import { DateFilePipe } from './pipes/date-file.pipe';
+import { SerachFilePipe } from './pipes/serach-file.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,11 @@ import { UsersService } from './services/users.service';
     LoginComponent,
     HomeComponent,
     NotfoundComponent,
-    NavBarComponent
+    NavBarComponent,
+    MailDirective,
+    PasswordDirective,
+    DateFilePipe,
+    SerachFilePipe
   ],
   imports: [
     BrowserModule,
