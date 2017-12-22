@@ -2,3 +2,11 @@
   margin-top: 5%;
   margin-bottom: 4%
 }
+
+table {
+	max-height: 2%
+}
+
+thead>tr>th {
+    cursor: pointer;
+}

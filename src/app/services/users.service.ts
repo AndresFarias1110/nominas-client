@@ -16,12 +16,12 @@ export class UsersService {
   }
 
   login(user:User):Observable<Response> {
-    return this.http.post(this.url + '/user/login', { mail: user.mail, password:user.password}, this.headers).map((response:Response) => {
+    return this.http.post(this.url + '/user/login', { rfc: user.rfc, password:user.password}, this.headers).map((response:Response) => {
       return response.json();
     });
   }
 
-  getFiles(id_user:number):Observable<Response>{
+  getFiles(id_user:string):Observable<Response>{
 	  return this.http.get(this.url + '/user/nominas/' + id_user,this.headers).map((rs:Response) => {
 		  return rs.json();
 	  })

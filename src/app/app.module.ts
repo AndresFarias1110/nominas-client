@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 /*Rutas*/
 import { APP_ROUTING } from './app.routes';
@@ -35,7 +36,8 @@ import { SerachFilePipe } from './pipes/serach-file.pipe';
     BrowserModule,
     FormsModule,
     APP_ROUTING,
-    HttpModule
+    HttpModule,
+	NgxPaginationModule
   ],
   providers: [
     UsersService

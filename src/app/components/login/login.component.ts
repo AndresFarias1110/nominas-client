@@ -31,10 +31,10 @@ export class LoginComponent implements OnInit {
     console.log("inputEmail:", f.value);
 
 
-	if (f.value.inputEmail && f.value.inputPassword) {
+	if (f.value.inputRfc && f.value.inputPassword) {
 		this.user = new User();
 
-	    this.user.mail = f.value.inputEmail;
+	    this.user.rfc = f.value.inputRfc;
 	    this.user.password = f.value.inputPassword;
 
 	    this.usersService.login(this.user).subscribe(rs => {

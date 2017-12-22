@@ -9,10 +9,10 @@
 
 			<span id="reauth-email" class="reauth-email"></span>
 
-			<input type="email" name="inputEmail" id="inputEmail" ngModel #inputEmail="ngModel" class="form-control " placeholder="Ej. afarias@mctree.com" appMail autofocus="">
+			<input type="text" name="inputRfc" id="inputRfc" ngModel #inputRfc="ngModel" class="form-control " placeholder="Ingresa tu RFC" autofocus="">
 
 			<div class="col-4 alerts">
-				<span class="text-danger" role="alert" *ngIf="inputEmail.invalid && (inputEmail.dirty || inputEmail.touched)">Correo invalido</span>
+				<span class="text-danger" role="alert" *ngIf="inputRfc.invalid && (inputRfc.dirty || inputRfc.touched)">Usuario invalido</span>
 			</div>
 
 			<input type="password" name="inputPassword" id="inputPassword" ngModel #inputPassword="ngModel" class="form-control" placeholder="Clave Minimo 8 caracteres" appPassword>
@@ -26,8 +26,8 @@
 			  <strong>Error!</strong> {{ msjError }}
 			</div>
 
-			<button class="btn btn-lg btn-primary btn-block btn-signin" *ngIf="inputPassword.errors || inputEmail.errors" disabled>Entrar</button>
-			<button class="btn btn-lg btn-primary btn-block btn-signin" *ngIf="!inputPassword.errors && !inputEmail.errors">Entrar</button>
+			<button class="btn btn-lg btn-primary btn-block btn-signin" *ngIf="inputPassword.errors || inputRfc.errors" disabled>Entrar</button>
+			<button class="btn btn-lg btn-primary btn-block btn-signin" *ngIf="!inputPassword.errors && !inputRfc.errors">Entrar</button>
 		</form>
 		<!-- /form -->
 
